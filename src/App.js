@@ -1,25 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import Formulaire from './components/Formulaire.js';
+import List from './components/List';
+import { useState } from 'react';
+import React from 'react';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [entries,setEntries]=useState([])
+   
+  const handleEntriesAdd=(newEntry)=>{
+      setEntries((previewEntries)=>[...previewEntries,newEntry]);
+ }
+  return(<div>
+    <Formulaire onEntryAdd={handleEntriesAdd} />
+    <List entries={entries} />
+  </div>)
 }
 
 export default App;
