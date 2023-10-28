@@ -36,7 +36,6 @@ span{
 @media screen and (max-width: 750px) {
     .output-button{
         margin-top: 0;
-        font-size: xx-small;
         padding: 0;
         width: auto;
     }
