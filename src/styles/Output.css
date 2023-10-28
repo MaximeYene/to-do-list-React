@@ -25,6 +25,7 @@ span{
 }
 .output-button {
     width: auto;
+    height: max-content;
     background-color: #4DB7FE;
     border: 1px solid #fff;
     border-radius: 3px;
