@@ -1,0 +1,6 @@
+.container-output p{
+    border-bottom: 1px solid;
+    text-align: center;
+    border-bottom-width: inherit;
+    margin: 2%;
+}
