@@ -1,6 +1,42 @@
-.container-output p{
+.output{
+    color: #fff;
+    box-shadow: 1px 1px 20px 1px lightslategray;
+    border-radius: 8px;
+}
+ul{
+    width: auto;
+    background-color: #4DB7FE;
+    padding-left: 2px;
+    border-radius: inherit;
+}
+ul li{
+    display: flex;
+    width: inherit;
+    padding: 10px;
     border-bottom: 1px solid;
-    text-align: center;
-    border-bottom-width: inherit;
-    margin: 2%;
+    list-style-type: none;
+
+}
+span{
+    border-bottom: 1px solid #fff;
+}
+.output-secondPart{
+    display: grid;
+}
+.output-button {
+    width: auto;
+    background-color: #4DB7FE;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 750px) {
+    .output-button{
+        margin-top: 0;
+        font-size: xx-small;
+        padding: 0;
+        width: auto;
+    }
 }

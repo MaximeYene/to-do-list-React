@@ -15,12 +15,6 @@
 .title-explication:hover{
     transform: scale(1.01);
 }
-.container {
-    width: auto;
-    margin:2% 20% 6% 20%;
-    border-radius: 8px;
-     box-shadow: 1px 1px 20px 1px lightslategray;
-}
 h2{
     color: #fff;
 }
@@ -31,12 +25,8 @@ h4{
     width: inherit;
     background-color: #4DB7FE;
     padding: 10px;
-    border-top-right-radius: inherit;
-    border-top-left-radius: inherit;
-    border-bottom: 1px solid;
-}
-.container-output{
-    width: inherit;
+    border-radius: 8px;
+    box-shadow: 1px 1px 20px 1px lightslategray;
 }
 input{
     width: 98%;

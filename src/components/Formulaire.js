@@ -34,7 +34,6 @@ function Formulaire(props) {
     return (
         <div>
             <h1 className="title">To-Do List</h1>
-            <div className="container">
                 <div className="container-form">
                     <h2>To-Do App!</h2>
                     <h4>Add new To-Do</h4>
@@ -45,7 +44,6 @@ function Formulaire(props) {
                         <button>Add</button>
                     </form>
                 </div>
-            </div>
         </div>
     )
 }

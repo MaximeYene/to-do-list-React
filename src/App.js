@@ -27,7 +27,7 @@ function App() {
   setEntries(updateEntries);
   setEdit(null)
  }
-  return(<div>
+  return(<div className='container'>
     <Formulaire onEntryAdd={handleEntriesAdd} />
     {edit !== null ?(<Formulaire entries={entries[edit]} onEntryUpdate={handleEntryUpdate}/>):(<List entries={entries} onEditEntry={handleEditEntry} onDeleteEntry={handleDeleteEntry} />)}
   </div>)

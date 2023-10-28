@@ -12,16 +12,18 @@ const List = (props) => {
     const handleEdit=(index)=>{
         onEditEntry(index)
     }
-    return (<div className="card-part">
+    return (<div className="output">
         <ul>
             {entries.map((task, index) => (
                 <li key={index}>
-                    <p>Work : {task.work}</p>
-                    <p>Description : {task.description}</p>
-                    <p>Date : {task.date}</p>
                     <div>
-                        <button onClick={()=>handleEdit(index)}>Update</button>
-                        <button onClick={()=>handleDelete(index)}>Delete</button>
+                    <p><span>Work </span>: {task.work}</p>
+                    <p><span>Description </span>: {task.description}</p>
+                    <p><span>Date </span>: {task.date}</p>
+                    </div>
+                    <div className="output-secondPart">
+                        <button className="output-button" onClick={()=>handleEdit(index)}>Update</button>
+                        <button className="output-button" onClick={()=>handleDelete(index)}>Delete</button>
                     </div>
                 </li>))}
         </ul>
