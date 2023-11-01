@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Output.css'
 
-const TodoItems = ({ todos, onDeleteTodo, onEditTodo }) => {
+const List = ({ todos, onDeleteTodo, onEditTodo }) => {
   const handleDelete = (index) => {
     onDeleteTodo(index);
   };
@@ -27,4 +27,4 @@ const TodoItems = ({ todos, onDeleteTodo, onEditTodo }) => {
   );
 };
 
-export default TodoItems;
+export default List;

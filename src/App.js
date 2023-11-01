@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import TodoForm from './components/Formulaire';
-import TodoItems from './components/List';
+import Formulaire from './components/Formulaire';
+import List from './components/List';
 import './App.css'
 
-const TodoList = () => {
+const App = () => {
   const [todos, setTodos] = useState([]);
   const [todoToEdit, setTodoToEdit] = useState(null);
 
@@ -39,13 +39,13 @@ const TodoList = () => {
   return (
     <div className='container' >
       <h1>Todo List</h1>
-      <TodoForm onAddTodo={addTodo} onSortTodo={sortTodosByDate}
+      <Formulaire onAddTodo={addTodo} onSortTodo={sortTodosByDate}
         onUpdateTodo={updateTodo}
         todoToEdit={todoToEdit}
         onSortBydate={sortTodosByDate}
         />
         <button onClick={sortTodosByDate}>Trier par date</button>
-      <TodoItems
+      <List
         todos={todos}
         onDeleteTodo={deleteTodo}
         onEditTodo={editTodo}
@@ -54,4 +54,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+export default App;

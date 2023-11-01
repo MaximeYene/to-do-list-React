@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Input.css'
 
-const TodoForm = ({ onAddTodo, onUpdateTodo, todoToEdit}) => {
+const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit}) => {
     const [work, setWork] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
@@ -66,4 +66,4 @@ const TodoForm = ({ onAddTodo, onUpdateTodo, todoToEdit}) => {
   );
 };
 
-export default TodoForm;
+export default Formulaire;
