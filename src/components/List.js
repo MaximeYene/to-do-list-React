@@ -9,7 +9,6 @@ const List = ({ todos, onDeleteTodo, onEditTodo }) => {
   const handleEdit = (index) => {
     const todoToUpdate = todos[index];
     onEditTodo(index, todoToUpdate);
-    // Faites quelque chose avec la tâche à modifier...
   };
 
   return (
