@@ -1,33 +1,30 @@
-import React from "react";
+import React from 'react';
 import '../styles/Output.css'
 
+const TodoItems = ({ todos, onDeleteTodo, onEditTodo }) => {
+  const handleDelete = (index) => {
+    onDeleteTodo(index);
+  };
 
-const List = (props) => {
-    const { entries,onDeleteEntry,onEditEntry } = props
+  const handleEdit = (index) => {
+    const todoToUpdate = todos[index];
+    onEditTodo(index, todoToUpdate);
+    // Faites quelque chose avec la tâche à modifier...
+  };
 
-    const handleDelete=(index)=>{
-        onDeleteEntry(index)
-    }
+  return (
+    <ul className='output' >
+      {todos.map((todo, index) => (
+        <li key={index}>
+          <p>Travail : {todo.work}</p>
+          <p>Description : {todo.description}</p>
+          <p>Date : {todo.date}</p>
+          <button onClick={() => handleDelete(index)}>Delete</button>
+          <button onClick={() => handleEdit(index)}>Update</button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-    const handleEdit=(index)=>{
-        onEditEntry(index)
-    }
-    return (<div className="output">
-        <ul>
-            {entries.map((task, index) => (
-                <li key={index}>
-                    <div>
-                    <p><span>Work </span>: {task.work}</p>
-                    <p><span>Description </span>: {task.description}</p>
-                    <p><span>Date </span>: {task.date}</p>
-                    </div>
-                    <div className="output-secondPart">
-                        <button className="output-button" onClick={()=>handleEdit(index)}>Update</button>
-                        <button className="output-button" onClick={()=>handleDelete(index)}>Delete</button>
-                    </div>
-                </li>))}
-        </ul>
-    </div>)
-}
-
-export default List;
+export default TodoItems;

@@ -1,36 +1,44 @@
-import './App.css';
-import Formulaire from './components/Formulaire.js';
-import List from './components/List';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
+import TodoForm from './components/Formulaire';
+import TodoItems from './components/List';
+import './App.css'
 
+const TodoList = () => {
+  const [todos, setTodos] = useState([]);
 
-function App() {
-  const [entries,setEntries]=useState([])
-  const [edit,setEdit]=useState(null)
-   
-  const handleEntriesAdd=(newEntry)=>{
-      setEntries((previewEntries)=>[...previewEntries,newEntry]);
- }
+  const addTodo = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
 
- const handleDeleteEntry=(index)=>{
-  setEntries((previewEntries)=>previewEntries.filter((entry,i)=> i !==index))
- }
+  const deleteTodo = (index) => {
+    const updatedTodos = todos.filter((_, i) => i !== index);
+    setTodos(updatedTodos);
+  };
 
- const handleEditEntry=(index)=>{
-  setEdit(index)
- }
+  const editTodo = (index, updatedTodo) => {
+    const updatedTodos = [...todos];
+    updatedTodos[index] = updatedTodo;
+    setTodos(updatedTodos);
+  };
 
- const handleEntryUpdate=(updateEntry)=>{
-  const updateEntries=[...entries];
-  updateEntries[edit]=updateEntry;
-  setEntries(updateEntries);
-  setEdit(null)
- }
-  return(<div className='container'>
-    <Formulaire onEntryAdd={handleEntriesAdd} />
-    {edit !== null ?(<Formulaire entries={entries[edit]} onEntryUpdate={handleEntryUpdate}/>):(<List entries={entries} onEditEntry={handleEditEntry} onDeleteEntry={handleDeleteEntry} />)}
-  </div>)
-}
+  const sortTodosByDate = () => {
+    const sortedTodos = [...todos].sort((a, b) =>
+      a.date.localeCompare(b.date)
+    );
+    setTodos(sortedTodos);
+  };
 
-export default App;
+  return (
+    <div className='container' >
+      <h1>Todo List</h1>
+      <TodoForm onAddTodo={addTodo} onSortTodo={sortTodosByDate} />
+      <TodoItems
+        todos={todos}
+        onDeleteTodo={deleteTodo}
+        onEditTodo={editTodo}
+      />
+    </div>
+  );
+};
+
+export default TodoList;
