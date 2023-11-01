@@ -10,8 +10,6 @@ ul{
     border-radius: inherit;
 }
 ul li{
-    display: flex;
-    width: inherit;
     padding: 10px;
     border-bottom: 1px solid;
     list-style-type: none;
