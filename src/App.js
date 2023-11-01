@@ -41,7 +41,10 @@ const TodoList = () => {
       <h1>Todo List</h1>
       <TodoForm onAddTodo={addTodo} onSortTodo={sortTodosByDate}
         onUpdateTodo={updateTodo}
-        todoToEdit={todoToEdit}/>
+        todoToEdit={todoToEdit}
+        onSortBydate={sortTodosByDate}
+        />
+        <button onClick={sortTodosByDate}>Trier par date</button>
       <TodoItems
         todos={todos}
         onDeleteTodo={deleteTodo}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Input.css'
 
-const TodoForm = ({ onAddTodo, onUpdateTodo, todoToEdit }) => {
+const TodoForm = ({ onAddTodo, onUpdateTodo, todoToEdit}) => {
     const [work, setWork] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
@@ -40,6 +40,7 @@ const TodoForm = ({ onAddTodo, onUpdateTodo, todoToEdit }) => {
       setDescription('');
       setDate('');
     };
+    
 
   return (
     <form onSubmit={handleSubmit} className='container-form'>
@@ -61,7 +62,6 @@ const TodoForm = ({ onAddTodo, onUpdateTodo, todoToEdit }) => {
         <input type="date" value={date} onChange={handleDateChange} required />
       </div>
       <button type="submit">Ajouter</button>
-      {/* <button onClick={handleSortTodo}>Trier par date</button> */}
     </form>
   );
 };
