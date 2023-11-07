@@ -6,10 +6,12 @@ import './App.css'
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [todoToEdit, setTodoToEdit] = useState(null);
+  const [searchDate,setSearchDate]=useState('');
 
   const editTodo = (index, todo) => {
     setTodoToEdit(todo);
   };
+
 
   const updateTodo = (updatedTodo) => {
     const index = todos.findIndex((todo) => todo === todoToEdit);
@@ -39,16 +41,20 @@ const App = () => {
   return (
     <div className='container' >
       <h1>Todo List</h1>
-      <Formulaire onAddTodo={addTodo} onSortTodo={sortTodosByDate}
+      <Formulaire onAddTodo={addTodo} 
+        onSortTodo={sortTodosByDate}
         onUpdateTodo={updateTodo}
         todoToEdit={todoToEdit}
         onSortBydate={sortTodosByDate}
+        searchDate={searchDate}
+        onSearchDateChange={setSearchDate}
         />
-        <button onClick={sortTodosByDate}>Trier par date</button>
+        <button onClick={sortTodosByDate}>Rechercher par date</button>
       <List
         todos={todos}
         onDeleteTodo={deleteTodo}
         onEditTodo={editTodo}
+        searchDate={searchDate}
       />
     </div>
   );
