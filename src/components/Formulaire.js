@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Input.css'
 
-const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchDate,onSearchDateChange}) => {
+const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo}) => {
     const [work, setWork] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
-    const [isUpdateTodo,setIsUpdateTodo]=useState(false);
+    const [searchDate,setSearchDate]=useState('')
+    const [isUpdate,setIsupdate]=useState(false);
   
     useEffect(() => {
       if (todoToEdit) {
@@ -26,6 +27,10 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchDate,onSearchDat
     const handleDateChange = (event) => {
       setDate(event.target.value);
     };
+
+    const toggleButton=()=>{
+      setIsupdate(!isUpdate);
+    }
   
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -41,11 +46,13 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchDate,onSearchDat
       setDescription('');
       setDate('');
     };
-
-    const toggleFormular=()=>{
-      setIsUpdateTodo(!isUpdateTodo);
-    }
     
+    const handleSearchTodo = (e) => {
+      e.preventDefault();
+      searchTodo(searchDate);
+      setSearchDate('');
+    };
+  
 
   return (
     <form onSubmit={handleSubmit} className='container-form'>
@@ -66,10 +73,17 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchDate,onSearchDat
         <label>Date :</label>
         <input type="date" value={date} onChange={handleDateChange} required />
       </div>
-      <button type="submit" onClick={toggleFormular}>{isUpdateTodo ? 'Update':'Add'}</button>
+      <button type="submit" onClick={toggleButton} >{isUpdate?'Update':'Add'}</button>
       <div>
-             <label htmlFor='search-date' >Rechercher par date</label>
-             <input type='date' id='search-date' value={searchDate} onChange={(e)=>onSearchDateChange(e.target.value)} />
+          <input
+            type="date"
+            placeholder="Date de recherche"
+            value={searchDate}
+            onChange={(e) => setSearchDate(e.target.value)}
+          />
+          <button type="submit" onClick={handleSearchTodo}>
+            Rechercher par date
+          </button>
         </div>
     </form>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Output.css'
 
-const List = ({ todos, onDeleteTodo, onEditTodo,searchDate }) => {
+const List = ({ todos, onDeleteTodo, onEditTodo }) => {
   const handleDelete = (index) => {
     onDeleteTodo(index);
   };
@@ -10,8 +10,6 @@ const List = ({ todos, onDeleteTodo, onEditTodo,searchDate }) => {
     const todoToUpdate = todos[index];
     onEditTodo(index, todoToUpdate);
   };
-
-  const filterDate=todos.filter((todo)=>todo.date===searchDate)
 
   return (
     <ul className='output' >
