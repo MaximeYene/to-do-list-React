@@ -15,6 +15,15 @@
 .title-explication:hover{
     transform: scale(1.01);
 }
+h1{
+    text-align: center;
+    color: #4DB7FE;
+    transition: .1s;
+}
+
+h1:hover{
+    transform: scale(1.02);
+}
 h2{
     color: #fff;
 }
@@ -27,6 +36,10 @@ h4{
     padding: 10px;
     border-radius: 8px;
     box-shadow: 1px 1px 20px 1px lightslategray;
+}
+
+label{
+    color: #fff;
 }
 input{
     width: 98%;

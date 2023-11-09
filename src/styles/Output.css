@@ -17,6 +17,7 @@ ul li{
 }
 span{
     border-bottom: 1px solid #fff;
+    font-style: italic;
 }
 .output-secondPart{
     display: grid;
