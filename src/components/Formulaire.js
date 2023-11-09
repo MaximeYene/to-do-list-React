@@ -4,20 +4,23 @@ import { Button } from '@mui/material';
 import { AddTask } from '@mui/icons-material';
 import { Search } from '@mui/icons-material';
 import { RestartAlt } from '@mui/icons-material';
+import { Update } from '@mui/icons-material';
 
 const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearch}) => {
     const [work, setWork] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
     const [searchDate,setSearchDate]=useState('')
-    const [isUpdate,setIsupdate]=useState(false);
-    // const [action, setAction] = useState('add');
+    const [isUpdate, setIsUpdate] = useState(!!todoToEdit);
   
     useEffect(() => {
       if (todoToEdit) {
         setWork(todoToEdit.work);
         setDescription(todoToEdit.description);
         setDate(todoToEdit.date);
+        setIsUpdate(true)
+      }else{
+        setIsUpdate(false)
       }
     }, [todoToEdit]);
   
@@ -25,29 +28,6 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
       setWork(event.target.value);
     };
 
-  //   const handleAddTodo = (e) => {
-  //   e.preventDefault();
-  //   if (action === 'add') {
-  //     onAddTodo({
-  //       work,
-  //       description,
-  //       date
-  //     });
-  //     setWork('');
-  //     setDescription('');
-  //     setDate('');
-  //   } else if (action === 'update') {
-  //     onUpdateTodo({
-  //       work,
-  //       description,
-  //       date
-  //     });
-  //     setWork('');
-  //     setDescription('');
-  //     setDate('');
-  //     setAction('add');
-  //   }
-  // };
     const handleDescriptionChange = (event) => {
       setDescription(event.target.value);
     };
@@ -65,15 +45,14 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
       }else{
         if (todoToEdit) {
           onUpdateTodo(updatedTodo);
-          setIsupdate(true);
         } else {
           onAddTodo(updatedTodo);
-          setIsupdate(true)
         }
     
         setWork('');
         setDescription('');
         setDate('');
+        setIsUpdate(false)
       }
     };
     
@@ -107,8 +86,9 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
         <label>Date :</label>
         <input type="date" value={date} onChange={handleDateChange} required />
       </div>
-      {isUpdate?(<Button type="submit" variant='contained'>Update</Button>):
-      <Button type="submit" variant='contained' endIcon={<AddTask/>} >Add</Button>}
+      <Button type="submit" variant='contained' endIcon={isUpdate ? <Update /> : <AddTask />}>
+        {isUpdate ? "Update" : "Add"}
+      </Button>
       <div className='search-container' >
           <input
             type="date"

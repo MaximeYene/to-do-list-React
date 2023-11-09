@@ -18,7 +18,7 @@ const List = ({ todos, onDeleteTodo, onEditTodo }) => {
     <ul className='output' >
       {todos.map((todo, index) => (
         <li key={index}>
-          <p>Travail : {todo.work}</p>
+          <p>Titre : {todo.work}</p>
           <p>Description : {todo.description}</p>
           <p>Date : {todo.date}</p>
           <Button variant='contained' endIcon={<Delete/>} onClick={() => handleDelete(index)}>Delete</Button>
