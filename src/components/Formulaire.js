@@ -29,19 +29,43 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
     };
 
     // Au chargement initial de la page, vérifiez s'il existe des tâches dans le stockage local
-useEffect(() => {
-  const savedTasks = localStorage.getItem('todos');
-  if (savedTasks) {
-    // Si des tâches sont trouvées, mettez-les à jour dans l'état initial
-    setTodos(JSON.parse(savedTasks));
-  }
-},[setTodos]);
-
-// Lorsque les tâches sont mises à jour, enregistrez-les dans le stockage local
-useEffect(() => {
-  localStorage.setItem('todos', JSON.stringify(todos));
-}, [todos]);
-
+    const handleAddOrUpdateTodo = (updatedTodo) => {
+      if (todoToEdit) {
+        // Mise à jour d'une tâche existante
+        onUpdateTodo(updatedTodo);
+        const updatedTodos = todos.map((todo) =>
+          todo.id === todoToEdit.id ? { ...todo, ...updatedTodo } : todo
+        );
+        setTodos(updatedTodos);
+        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+      } else {
+        // Ajout d'une nouvelle tâche
+        onAddTodo(updatedTodo);
+        const newTodos = [...todos, updatedTodo];
+        setTodos(newTodos);
+        localStorage.setItem('todos', JSON.stringify(newTodos));
+      }
+  
+      setWork('');
+      setDescription('');
+      setDate('');
+      setIsUpdate(false);
+    };
+  
+    // Récupérer les todos du stockage local lors du chargement initial
+    useEffect(() => {
+      const savedTodos = JSON.parse(localStorage.getItem('todos'));
+      if (savedTodos) {
+        setTodos(savedTodos);
+      }
+    }, [setTodos]);
+  
+    // Utilisation de la fonction handleAddOrUpdateTodo lors de la soumission du formulaire
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const updatedTodo = { work, description, date };
+      handleAddOrUpdateTodo(updatedTodo);
+    };
 
     const handleDescriptionChange = (event) => {
       setDescription(event.target.value);
@@ -51,25 +75,25 @@ useEffect(() => {
       setDate(event.target.value);
     };
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const updatedTodo = { work, description, date };
+    // const handleSubmit = (event) => {
+    //   event.preventDefault();
+    //   const updatedTodo = { work, description, date };
   
-      if(work.trim()===''||description.trim()===''||date.trim()===''){
-        alert('veuillez remplir tous les champs')
-      }else{
-        if (todoToEdit) {
-          onUpdateTodo(updatedTodo);
-        } else {
-          onAddTodo(updatedTodo);
-        }
+    //   if(work.trim()===''||description.trim()===''||date.trim()===''){
+    //     alert('veuillez remplir tous les champs')
+    //   }else{
+    //     if (todoToEdit) {
+    //       onUpdateTodo(updatedTodo);
+    //     } else {
+    //       onAddTodo(updatedTodo);
+    //     }
     
-        setWork('');
-        setDescription('');
-        setDate('');
-        setIsUpdate(false)
-      }
-    };
+    //     setWork('');
+    //     setDescription('');
+    //     setDate('');
+    //     setIsUpdate(false)
+    //   }
+    // };
     
     const handleSearchTodo = (e) => {
       e.preventDefault();
