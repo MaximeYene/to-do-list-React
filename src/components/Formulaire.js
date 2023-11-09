@@ -117,10 +117,10 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
             onChange={(e) => setSearchDate(e.target.value)}
           />
           <Button variant='contained' type="submit" endIcon={<Search/>} onClick={handleSearchTodo}>
-            Rechercher par date
+            Search by Date
           </Button>
           <Button variant='contained' type="button" endIcon={<RestartAlt/>} onClick={handleResetSearch}>
-            Réinitialiser la recherche
+            Reset search
           </Button>
         </div>
     </form>
