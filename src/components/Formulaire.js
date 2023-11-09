@@ -65,6 +65,9 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
       event.preventDefault();
       const updatedTodo = { work, description, date };
       handleAddOrUpdateTodo(updatedTodo);
+      if(work.trim()===''||description.trim()===''||date.trim()===''){
+            alert('veuillez remplir tous les champs')
+          }
     };
 
     const handleDescriptionChange = (event) => {
