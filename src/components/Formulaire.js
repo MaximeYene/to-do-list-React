@@ -61,14 +61,6 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
     }, [setTodos]);
   
     // Utilisation de la fonction handleAddOrUpdateTodo lors de la soumission du formulaire
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const updatedTodo = { work, description, date };
-      handleAddOrUpdateTodo(updatedTodo);
-      if(work.trim()===''||description.trim()===''||date.trim()===''){
-            alert('veuillez remplir tous les champs')
-          }
-    };
 
     const handleDescriptionChange = (event) => {
       setDescription(event.target.value);
@@ -78,25 +70,25 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
       setDate(event.target.value);
     };
   
-    // const handleSubmit = (event) => {
-    //   event.preventDefault();
-    //   const updatedTodo = { work, description, date };
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const updatedTodo = { work, description, date };
   
-    //   if(work.trim()===''||description.trim()===''||date.trim()===''){
-    //     alert('veuillez remplir tous les champs')
-    //   }else{
-    //     if (todoToEdit) {
-    //       onUpdateTodo(updatedTodo);
-    //     } else {
-    //       onAddTodo(updatedTodo);
-    //     }
+      if(work.trim()===''||description.trim()===''||date.trim()===''){
+        alert('veuillez remplir tous les champs')
+      }else{
+        if (todoToEdit) {
+          handleAddOrUpdateTodo(updatedTodo);
+        } else {
+          onAddTodo(updatedTodo);
+        }
     
-    //     setWork('');
-    //     setDescription('');
-    //     setDate('');
-    //     setIsUpdate(false)
-    //   }
-    // };
+        setWork('');
+        setDescription('');
+        setDate('');
+        setIsUpdate(false)
+      }
+    };
     
     const handleSearchTodo = (e) => {
       e.preventDefault();
