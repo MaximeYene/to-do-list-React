@@ -6,7 +6,7 @@ import { Search } from '@mui/icons-material';
 import { RestartAlt } from '@mui/icons-material';
 import { Update } from '@mui/icons-material';
 
-const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearch}) => {
+const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearch}) => {
     const [work, setWork] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
@@ -27,6 +27,21 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
     const handleWorkChange = (event) => {
       setWork(event.target.value);
     };
+
+    // Au chargement initial de la page, vérifiez s'il existe des tâches dans le stockage local
+useEffect(() => {
+  const savedTasks = localStorage.getItem('todos');
+  if (savedTasks) {
+    // Si des tâches sont trouvées, mettez-les à jour dans l'état initial
+    setTodos(JSON.parse(savedTasks));
+  }
+},[setT`odos]);
+
+// Lorsque les tâches sont mises à jour, enregistrez-les dans le stockage local
+useEffect(() => {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}, [todos]);
+
 
     const handleDescriptionChange = (event) => {
       setDescription(event.target.value);

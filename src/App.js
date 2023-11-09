@@ -48,6 +48,7 @@ const App = () => {
         todoToEdit={todoToEdit}
         searchTodo={searchTodo}
         todos={todos}
+        setTodos={setTodos}
         resetSearch={resetSearch}
         />
       <List
