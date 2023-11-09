@@ -49,5 +49,8 @@ button {
 @media screen and (max-width : 750px) {
     .title{
        font-size: 22px;
+    }
+    .search-container Button{
+        width: 65%;
     } 
 }

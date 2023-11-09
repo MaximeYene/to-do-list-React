@@ -109,7 +109,7 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
       </div>
       {isUpdate?(<Button type="submit" variant='contained'>Update</Button>):
       <Button type="submit" variant='contained' endIcon={<AddTask/>} >Add</Button>}
-      <div>
+      <div className='search-container' >
           <input
             type="date"
             placeholder="Date de recherche"
