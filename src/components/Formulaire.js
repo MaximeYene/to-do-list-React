@@ -35,7 +35,7 @@ useEffect(() => {
     // Si des tâches sont trouvées, mettez-les à jour dans l'état initial
     setTodos(JSON.parse(savedTasks));
   }
-},[setT`odos]);
+},[setTodos]);
 
 // Lorsque les tâches sont mises à jour, enregistrez-les dans le stockage local
 useEffect(() => {
