@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/Input.css'
 import { Button } from '@mui/material';
+import { AddTask } from '@mui/icons-material';
+import { Search } from '@mui/icons-material';
+import { RestartAlt } from '@mui/icons-material';
 
 const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearch}) => {
     const [work, setWork] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState('');
     const [searchDate,setSearchDate]=useState('')
+    const [isUpdate,setIsupdate]=useState(false);
+    // const [action, setAction] = useState('add');
   
     useEffect(() => {
       if (todoToEdit) {
@@ -20,6 +25,29 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
       setWork(event.target.value);
     };
 
+  //   const handleAddTodo = (e) => {
+  //   e.preventDefault();
+  //   if (action === 'add') {
+  //     onAddTodo({
+  //       work,
+  //       description,
+  //       date
+  //     });
+  //     setWork('');
+  //     setDescription('');
+  //     setDate('');
+  //   } else if (action === 'update') {
+  //     onUpdateTodo({
+  //       work,
+  //       description,
+  //       date
+  //     });
+  //     setWork('');
+  //     setDescription('');
+  //     setDate('');
+  //     setAction('add');
+  //   }
+  // };
     const handleDescriptionChange = (event) => {
       setDescription(event.target.value);
     };
@@ -37,8 +65,10 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
       }else{
         if (todoToEdit) {
           onUpdateTodo(updatedTodo);
+          setIsupdate(true);
         } else {
           onAddTodo(updatedTodo);
+          setIsupdate(true)
         }
     
         setWork('');
@@ -77,7 +107,8 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
         <label>Date :</label>
         <input type="date" value={date} onChange={handleDateChange} required />
       </div>
-      <Button type="submit" variant='contained'>Add</Button>
+      {isUpdate?(<Button type="submit" variant='contained'>Update</Button>):
+      <Button type="submit" variant='contained' endIcon={<AddTask/>} >Add</Button>}
       <div>
           <input
             type="date"
@@ -85,10 +116,10 @@ const Formulaire = ({ onAddTodo, onUpdateTodo, todoToEdit,searchTodo, resetSearc
             value={searchDate}
             onChange={(e) => setSearchDate(e.target.value)}
           />
-          <Button variant='contained' type="submit" onClick={handleSearchTodo}>
+          <Button variant='contained' type="submit" endIcon={<Search/>} onClick={handleSearchTodo}>
             Rechercher par date
           </Button>
-          <Button variant='contained' type="button" onClick={handleResetSearch}>
+          <Button variant='contained' type="button" endIcon={<RestartAlt/>} onClick={handleResetSearch}>
             Réinitialiser la recherche
           </Button>
         </div>
