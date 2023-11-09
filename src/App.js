@@ -6,6 +6,7 @@ import './App.css'
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [todoToEdit, setTodoToEdit] = useState(null);
+  const [originalTodos, setOriginalTodos] = useState([]);
 
   const editTodo = (index, todo) => {
     setTodoToEdit(todo);
@@ -21,6 +22,11 @@ const App = () => {
 
   const addTodo = (newTodo) => {
     setTodos([...todos, newTodo]);
+    setOriginalTodos([...todos, newTodo]);
+  };
+
+  const resetSearch = () => {
+    setTodos(originalTodos);
   };
 
   const deleteTodo = (index) => {
@@ -42,6 +48,7 @@ const App = () => {
         todoToEdit={todoToEdit}
         searchTodo={searchTodo}
         todos={todos}
+        resetSearch={resetSearch}
         />
       <List
         todos={todos}
