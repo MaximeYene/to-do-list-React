@@ -28,10 +28,10 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
       setWork(event.target.value);
     };
 
-    // Au chargement initial de la page, vérifiez s'il existe des tâches dans le stockage local
+    // vérification s'il existe des tâches dans le stockage local au chargement initial de la page
     const handleUpdateTodo = (updatedTodo) => {
       if (isUpdate && todoToEdit) {
-        // Mise à jour de la tâche spécifique
+        // Mise à jour de la tâche
         onUpdateTodo({
           ...todoToEdit,
           work: updatedTodo.work,
@@ -40,18 +40,18 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
         });
       }
       else {
-        // Gérez l'ajout d'une nouvelle tâche (si nécessaire)
+        // ajout d'une nouvelle tâche
          onAddTodo(updatedTodo);
       }
     
-      // Réinitialisez les valeurs après la mise à jour
+      // Réinitialisation les valeurs après la mise à jour
       setWork('');
       setDescription('');
       setDate('');
       setIsUpdate(false);
     };
   
-    // Récupérer les todos du stockage local lors du chargement initial
+    // Récupération des todos du stockage local lors du chargement initial
     useEffect(() => {
       const savedTodos = JSON.parse(localStorage.getItem('todos'));
       if (savedTodos) {
@@ -59,7 +59,6 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
       }
     }, [setTodos]);
   
-    // Utilisation de la fonction handleAddOrUpdateTodo lors de la soumission du formulaire
 
     const handleDescriptionChange = (event) => {
       setDescription(event.target.value);
@@ -76,7 +75,8 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
       if (work.trim() === '' || description.trim() === '' || date.trim() === '') {
         alert('Veuillez remplir tous les champs');
       } else {
-        handleUpdateTodo(updatedTodo); // Utilisez la fonction pour mettre à jour la tâche spécifique
+        handleUpdateTodo(updatedTodo);
+        // Utilisation de la fonction pour mettre à jour la tâche
       }
     };
     
