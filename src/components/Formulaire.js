@@ -29,23 +29,22 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
     };
 
     // Au chargement initial de la page, vérifiez s'il existe des tâches dans le stockage local
-    const handleAddOrUpdateTodo = (updatedTodo) => {
-      if (todoToEdit) {
-        // Mise à jour d'une tâche existante
-        onUpdateTodo(updatedTodo);
-        const updatedTodos = todos.map((todo) =>
-          todo.id === todoToEdit.id ? { ...todo, ...updatedTodo } : todo
-        );
-        setTodos(updatedTodos);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
-      } else {
-        // Ajout d'une nouvelle tâche
-        onAddTodo(updatedTodo);
-        const newTodos = [...todos, updatedTodo];
-        setTodos(newTodos);
-        localStorage.setItem('todos', JSON.stringify(newTodos));
+    const handleUpdateTodo = (updatedTodo) => {
+      if (isUpdate && todoToEdit) {
+        // Mise à jour de la tâche spécifique
+        onUpdateTodo({
+          ...todoToEdit,
+          work: updatedTodo.work,
+          description: updatedTodo.description,
+          date: updatedTodo.date
+        });
       }
-  
+      else {
+        // Gérez l'ajout d'une nouvelle tâche (si nécessaire)
+         onAddTodo(updatedTodo);
+      }
+    
+      // Réinitialisez les valeurs après la mise à jour
       setWork('');
       setDescription('');
       setDate('');
@@ -73,20 +72,11 @@ const Formulaire = ({todos, setTodos, onAddTodo, onUpdateTodo, todoToEdit,search
     const handleSubmit = (event) => {
       event.preventDefault();
       const updatedTodo = { work, description, date };
-  
-      if(work.trim()===''||description.trim()===''||date.trim()===''){
-        alert('veuillez remplir tous les champs')
-      }else{
-        if (todoToEdit) {
-          handleAddOrUpdateTodo(updatedTodo);
-        } else {
-          onAddTodo(updatedTodo);
-        }
     
-        setWork('');
-        setDescription('');
-        setDate('');
-        setIsUpdate(false)
+      if (work.trim() === '' || description.trim() === '' || date.trim() === '') {
+        alert('Veuillez remplir tous les champs');
+      } else {
+        handleUpdateTodo(updatedTodo); // Utilisez la fonction pour mettre à jour la tâche spécifique
       }
     };
     
